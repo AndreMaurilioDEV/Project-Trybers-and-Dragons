@@ -4,6 +4,9 @@ import Fighter, { SimpleFighter } from './Fighter';
 import Race, { Elf, Halfling } from './Races';
 import getRandomInt from './utils';
 
+const archeInstance = new Mage('Mago');
+const raceInstance = new Halfling('Elfo', 8);
+
 class Character implements Fighter {
   private _race: Race;
   private _archetype: Archetype;
@@ -16,7 +19,7 @@ class Character implements Fighter {
   private name = '';
 
   constructor(name: string) {
-    this.name = '';
+    this.name = name;
     this._dexterity = 8;
     this._race = new Elf('Elfo', this.dexterity);
     this._archetype = archeInstance;
@@ -30,12 +33,12 @@ class Character implements Fighter {
     };
   }
 
-  get race() {
-    return Race;
+  get race(): Race {
+    return this.race;
   }
     
-  get archetype() {
-    return Archetype;
+  get archetype(): Archetype {
+    return this.archetype;
   }
 
   get lifePoints() {
@@ -55,25 +58,25 @@ class Character implements Fighter {
   }
 
   get energy() {
-    return this._energy = {
+    return {
+      ...this._energy,
       amount: 10,
-      type_: archeInstance.energyType,
     };
   }
 
   receiveDamage(attackPoints: number): number {
     const damage = this._defense - attackPoints;
     if (damage > 0) {
-        damage - this._lifePoints;
+      this._lifePoints -= damage;
     } else {
-        this._lifePoints--;
+      this._lifePoints -= 1;
     }
-    this._lifePoints <= 0 ? this._lifePoints = -1 : this._lifePoints
-    return this._lifePoints
+    this._lifePoints = this._lifePoints <= 0 ? -1 : this._lifePoints;
+    return this._lifePoints;
   }
 
   attack(enemy: Fighter | SimpleFighter): void {
-    enemy.receiveDamage(enemy.strength);
+    enemy.receiveDamage(this.strength);
   }
 
   levelUp(): void {
@@ -88,12 +91,8 @@ class Character implements Fighter {
 
     if (this._lifePoints > raceInstance.maxLifePoints) {
       this.maxLifePoints = raceInstance.maxLifePoints;
-    } 
-
+    }
   }
 }
-
-const archeInstance = new Mage('Mago');
-const raceInstance = new Halfling('Elfo', 8);
 
 export default Character;

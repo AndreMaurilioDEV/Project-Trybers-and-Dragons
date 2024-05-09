@@ -8,7 +8,7 @@ class Elf extends Race {
     name: string,
     dexterity: number,
   ) {
-    Elf.instancesNumber++;
+    Elf.instancesNumber += 1;
     super(name, dexterity);
     this._maxLifePoints = 99;
   }

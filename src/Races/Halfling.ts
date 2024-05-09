@@ -8,7 +8,7 @@ class Halfling extends Race {
     name: string,
     dexterity: number,
   ) {
-    Halfling.instancesNumber++;
+    Halfling.instancesNumber += 1;
     super(name, dexterity);
     this._maxLifePoints = 60;
   }

@@ -18,7 +18,7 @@ class Monster implements SimpleFighter {
   }
 
   receiveDamage(attackPoints: number): number {
-    this._lifePoints - attackPoints;
+    this._lifePoints -= this._lifePoints - attackPoints;
     if (this._lifePoints <= 0) {
       this._lifePoints = -1;
     }
@@ -29,7 +29,8 @@ class Monster implements SimpleFighter {
   attack(enemy: SimpleFighter) {
     const damage = this.receiveDamage(this._strength);
     const remainingLife = enemy.lifePoints - damage;
-    return enemy.lifePoints = remainingLife;
+    const updatedEnemy = { ...enemy, lifePoints: remainingLife };
+    return updatedEnemy;
   }
 }
 

@@ -6,7 +6,7 @@ class PVP extends Battle {
   player2: Character;
 
   constructor(winner: Character, loser: Character) {
-    super(player1);
+    super(new Character('teste'));
     this.player1 = winner;
     this.player2 = loser;
   }
@@ -19,9 +19,5 @@ class PVP extends Battle {
     return -1;
   }
 }
-
-const player1 = new Character('Lutador');
-const player2 = new Character('Lutador 2');
-const pvp = new PVP(player1, player2);
 
 export default PVP;

@@ -8,7 +8,7 @@ class Dwarf extends Race {
     name: string,
     dexterity: number,
   ) {
-    Dwarf.instancesNumber++;
+    Dwarf.instancesNumber += 1;
     super(name, dexterity);
     this._maxLifePoints = 80;
   }
