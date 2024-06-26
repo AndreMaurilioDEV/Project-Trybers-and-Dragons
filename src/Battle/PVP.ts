@@ -13,10 +13,13 @@ class PVP extends Battle {
 
   fight(): number {
     const result = super.fight();
-    if (result === 1) {
+    this.player1.attack(this.player2);
+    this.player2.receiveDamage(120);
+    if (this.player2.lifePoints < 0) {
       return 1;
-    } 
-    return -1;
+    } else {
+      return -1;
+    }
   }
 }
 

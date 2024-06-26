@@ -33,9 +33,9 @@ class Character implements Fighter {
     };
   }
 
-  get race(): Race {
+  /*get race(): Race {
     return this.race;
-  }
+  }*/
     
   get archetype(): Archetype {
     return this.archetype;
@@ -90,8 +90,8 @@ class Character implements Fighter {
     };
 
     if (this._lifePoints > raceInstance.maxLifePoints) {
-      this.maxLifePoints = raceInstance.maxLifePoints;
-    }
+      this._lifePoints = raceInstance.maxLifePoints;
+  }
   }
 }
 
